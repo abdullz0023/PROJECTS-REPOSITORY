@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Same Page Different Stylesheets</title>
+
+    <!-- INTERNAL CSS -->
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eeeeee;
+            color: #222;
+        }
+
+        .page {
+            width: 96%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        /* Header */
+        .header {
+            background: #d84837;
+            color: white;
+            padding: 28px 30px 34px;
+        }
+
+        .header h1 {
+            margin: 0 0 28px;
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 0.9;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: clamp(20px, 2.5vw, 32px);
+        }
+
+        /* Main content */
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 230px;
+            gap: 28px;
+            padding: 22px 12px 0;
+        }
+
+        .main {
+            padding: 10px 24px 25px;
+        }
+
+        .main h2 {
+            color: #c94839;
+            font-size: 34px;
+            line-height: 1.15;
+            margin: 0 0 22px;
+        }
+
+        .main h3 {
+            color: #c94839;
+            font-size: 28px;
+            margin: 26px 0 16px;
+        }
+
+        .main p {
+            font-size: 18px;
+            margin: 7px 0;
+        }
+
+        .links {
+            color: #c94839;
+        }
+
+        .links a {
+            color: #c94839;
+            text-decoration: none;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right-side menu */
+        .sidebar {
+            padding: 0 6px 20px 0;
+        }
+
+        .style-button {
+            display: block;
+            width: 100%;
+            border: 1px solid #d84837;
+            border-radius: 25px;
+            padding: 8px 12px;
+            margin-bottom: 11px;
+            background: #d84837;
+            color: white;
+            font-size: 21px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .style-button:hover {
+            background: white;
+            color: #d84837;
+            transform: translateX(-3px);
+        }
+
+        .style-button.active {
+            background: white;
+            color: #d84837;
+        }
+
+        /* Lower sections */
+        .no-styles {
+            margin-top: 20px;
+        }
+
+        .side-bar-section {
+            background: #f5d8d5;
+            color: #c94839;
+            padding: 28px 24px 30px;
+            margin: 0 -12px;
+        }
+
+        .side-bar-section h3 {
+            margin: 0 0 22px;
+            font-size: 25px;
+        }
+
+        .side-bar-section p {
+            margin: 0;
+            font-size: 21px;
+            line-height: 1.3;
+        }
+
+        .footer {
+            background: #d84837;
+            color: white;
+            padding: 18px 28px;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* Demonstration styles */
+        .style2 .header,
+        .style2 .footer,
+        .style2 .style-button {
+            background: #222;
+        }
+
+        .style2 .main h2,
+        .style2 .main h3,
+        .style2 .links,
+        .style2 .links a,
+        .style2 .side-bar-section {
+            color: #222;
+        }
+
+        .style2 .side-bar-section {
+            background: #ddd;
+        }
+
+        .style3 {
+            background: #f4f8ff;
+        }
+
+        .style3 .header,
+        .style3 .footer,
+        .style3 .style-button {
+            background: #1769aa;
+        }
+
+        .style3 .main h2,
+        .style3 .main h3,
+        .style3 .links,
+        .style3 .links a {
+            color: #1769aa;
+        }
+
+        .style3 .side-bar-section {
+            background: #dceeff;
+            color: #1769aa;
+        }
+
+        .style4 .header,
+        .style4 .footer,
+        .style4 .style-button {
+            background: #237a57;
+        }
+
+        .style4 .main h2,
+        .style4 .main h3,
+        .style4 .links,
+        .style4 .links a {
+            color: #237a57;
+        }
+
+        .style4 .side-bar-section {
+            background: #dff3e9;
+            color: #237a57;
+        }
+
+        .no-style-mode {
+            background: white;
+            color: black;
+        }
+
+        .no-style-mode .header,
+        .no-style-mode .footer,
+        .no-style-mode .sidebar,
+        .no-style-mode .side-bar-section {
+            display: none;
+        }
+
+        .no-style-mode .content {
+            display: block;
+            padding: 20px;
+        }
+
+        .no-style-mode .main {
+            padding: 0;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 750px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: -1;
+                padding: 0 24px;
+            }
+
+            .style-button {
+                display: inline-block;
+                width: auto;
+                min-width: 150px;
+                margin-right: 5px;
+            }
+
+            .header h1 {
+                font-size: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page" id="page">
+
+        <header class="header">
+            <h1>Welcome to My<br>Homepage</h1>
+            <p>Use the menu to select different Stylesheets</p>
+        </header>
+
+        <div class="content">
+
+            <main class="main">
+                <h2>Same Page Different<br>Stylesheets</h2>
+
+                <p>
+                    This is a demonstration of how different stylesheets can
+                    change the layout of your HTML page. You can change the
+                    layout of this page by selecting different stylesheets in
+                    the menu, or by selecting one of the following links:
+                </p>
+
+                <p class="links">
+                    <a href="#" onclick="applyStyle('style1'); return false;">Stylesheet 1</a>,
+                    <a href="#" onclick="applyStyle('style2'); return false;">Stylesheet 2</a>,
+                    <a href="#" onclick="applyStyle('style3'); return false;">Stylesheet 3</a>,
+                    <a href="#" onclick="applyStyle('style4'); return false;">Stylesheet 4</a>.
+                </p>
+
+                <section class="no-styles">
+                    <h3>No Styles</h3>
+                    <p>
+                        This page uses DIV elements to group different sections
+                        of the HTML page. Click here to see how the page looks
+                        like with no stylesheet:
+                    </p>
+                    <p class="links">
+                        <a href="#" onclick="applyStyle('none'); return false;">No Stylesheet.</a>
+                    </p>
+                </section>
+            </main>
+
+            <aside class="sidebar">
+                <button class="style-button active" onclick="applyStyle('style1')">
+                    Stylesheet 1
+                </button>
+                <button class="style-button" onclick="applyStyle('style2')">
+                    Stylesheet 2
+                </button>
+                <button class="style-button" onclick="applyStyle('style3')">
+                    Stylesheet 3
+                </button>
+                <button class="style-button" onclick="applyStyle('style4')">
+                    Stylesheet 4
+                </button>
+                <button class="style-button" onclick="applyStyle('none')">
+                    No Stylesheet
+                </button>
+            </aside>
+
+        </div>
+
+        <section class="side-bar-section">
+            <h3>Side-Bar</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+                magna aliquam erat volutpat.
+            </p>
+        </section>
+
+        <footer class="footer">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
+            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+            ullamcorper suscipit lobortis nisl ut aliquip ex ea.
+        </footer>
+
+    </div>
+
+    <script>
+        function applyStyle(style) {
+            const page = document.getElementById("page");
+
+            page.classList.remove(
+                "style2",
+                "style3",
+                "style4",
+                "no-style-mode"
+            );
+
+            if (style === "style2") {
+                page.classList.add("style2");
+            } else if (style === "style3") {
+                page.classList.add("style3");
+            } else if (style === "style4") {
+                page.classList.add("style4");
+            } else if (style === "none") {
+                page.classList.add("no-style-mode");
+            }
+
+            document.querySelectorAll(".style-button").forEach(button => {
+                button.classList.remove("active");
+            });
+
+            const buttons = document.querySelectorAll(".style-button");
+
+            if (style === "style1") buttons[0].classList.add("active");
+            if (style === "style2") buttons[1].classList.add("active");
+            if (style === "style3") buttons[2].classList.add("active");
+            if (style === "style4") buttons[3].classList.add("active");
+            if (style === "none") buttons[4].classList.add("active");
+        }
+    </script>
+</body>
+</html>

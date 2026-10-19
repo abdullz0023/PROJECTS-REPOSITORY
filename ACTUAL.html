@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>actual web</title>
+    <link src="stylesheet" href="actual.css">
+    <style>
+        body{
+    background-color:aliceblue;
+    margin: 0px;
+}
+
+.main{
+    height: 600px;
+    width: 630px;
+    align-items: center;
+    background-color: azure;
+    border-radius: 20px;
+    border-width: 5px;
+    border-color: bisque;
+    display: grid;
+    text-align: center;
+    margin: 200px;
+
+}
+.numbers{
+   
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    
+    margin-bottom: 20px;
+    margin-left: 40px;
+    
+
+}
+
+.numbers input{
+    
+    margin: 20px;
+    display: grid;
+    height: 30px;
+    width: 200px;
+    color: red;
+    background-color: bisque;
+
+}
+
+.numbers input:hover{
+    background-color:cornsilk;
+    color: brown;
+}
+.operators{
+     
+    align-items: center;
+   
+    margin-bottom: 20px;
+     display: flex;
+    flex-direction: row;
+
+    
+}
+
+
+.operators button{
+
+    
+     margin: 20px;
+    display: grid;
+    height: 30px;
+    width: 120px;
+    color: aquamarine;
+    background-color: bisque;
+
+
+}
+.operators button:hover{
+    background-color: aquamarine;
+    color: red;
+}
+
+.clear{
+    
+    align-items: center;
+    margin-left: 200px;
+   
+    
+}
+
+.clear button{
+    margin-bottom: 20px;
+    margin: 20px;
+    display: grid;
+    height: 30px;
+    width: 200px;
+    color: aquamarine;
+    background-color: bisque;
+
+}
+.clear button:hover{
+    background-color: blue;
+    color: black;
+}
+    
+
+    
+}
+.clear button{
+     align-items: center;
+     background-color:darkgrey;
+    margin: 20px;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="main">
+
+        SIMPLE CALCULATOR
+        <div class="numbers">
+            <input type="number" id="num1" placeholder="Enter your first number">
+            <input type="number"  id="num2"  placeholder="Enter your secondnumber">
+        
+
+        </div>
+        <div class="operators">
+            <button id="add" onclick="addFunc()">ADDITION</button>
+              <button id="sub" onclick="subFunc()">SUBTRACTION</button>
+                <button id="mult" onclick="mulFunc()">MULTIPLICATION</button>
+                  <button id="div" onclick=" divFunc()">DIVISION</button>
+        </div>
+
+        <div class="clear">
+            <button onclick="cleaFunc()">CLEAR</button>
+
+        </div>
+        <div class="results" id="res">
+            results
+
+        </div>
+
+        
+    </div>
+
+    <script>
+       
+           
+            function addFunc(){
+
+                 let num1=Number( document.getElementById('num1').value);
+              let num2=Number( document.getElementById('num2').value);
+              let ans = num1 + num2;
+
+              document.getElementById('res').innerHTML="result is"+ "" + ans;
+
+            }
+
+            function subFunc(){
+
+                 let num1=Number( document.getElementById('num1').value);
+              let num2=Number( document.getElementById('num2').value);
+              let jibu = num1 - num2
+
+              document.getElementById('res').innerHTML="result is"+ "" + jibu ;
+
+            }
+            
+            
+             function mulFunc(){
+
+                 let num1=Number( document.getElementById('num1').value);
+              let num2=Number( document.getElementById('num2').value);
+
+              document.getElementById('res').innerHTML="result is"+ "" + num1 * num2;
+
+            }
+            
+             function divFunc(){
+
+                 let num1=Number( document.getElementById('num1').value);
+              let num2=Number( document.getElementById('num2').value);
+
+              document.getElementById('res').innerHTML="result is"+ "" + num1 / num2;
+
+            }
+             
+            function cleaFunc(){
+                 let num1=Number( document.getElementById('num1').value="");
+              let num2=Number( document.getElementById('num2').value="");
+
+              document.getElementById('res').innerHTML="result ";
+
+            }
+
+
+
+
+
+
+
+            
+     
+    </script>
+</body>
+</html>

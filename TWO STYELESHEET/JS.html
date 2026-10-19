@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 onclick="myfunc()" style="cursor: pointer;">WELCOME TO JAVASCRIPT</h1>
+    <P id="POA">SEE YOUR NAME</P>
+    <p id="HI" onclick="tureFunc()"  style="cursor: pointer;">hi</p>
+    <script>
+        function tureFunc(){
+            let number= -Infinity;
+            for (let a = 0; a<arguments.length){
+                if(number < arguments[a]){
+                    number = arguments[a];
+                }
+            }
+
+            
+          document.getElementById('HI').innerHTML=tureFunc(12,122,22,2,333);
+          
+         
+           
+        }
+
+        function myfunc(){
+            
+            let you = prompt("what is your name ");
+          document.getElementById('POA').innerHTML="your name is"+  ""+"" + you;
+
+        }
+    </script>
+    
+</body>
+</html>
